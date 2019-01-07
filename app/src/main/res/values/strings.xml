@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">hof</string>
+    <string name="LinearLayoutManager" translatable="false">androidx.recyclerview.widget.LinearLayoutManager</string>
+    <string name="GridLayoutManager" translatable="false">androidx.recyclerview.widget.GridLayoutManager</string>
+    <string name="horizontal" translatable="false">horizontal</string>
+    <string name="expand" >展开</string>
+    <string name="collapse" >收起</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="github.hotstu.demo.hof.Group" />
+
+        <variable
+            name="presenter"
+            type="github.hotstu.demo.hof.MainActivity.Presenter" />
+
+        <variable
+            name="position"
+            type="int" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/s_section_bg"
+        android:onClick="@{()->presenter.onGroupClick(item, position)}"
+        app:selected="@{item.checked}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@{item.toString()}"
+            android:textColor="@{item.checked? @color/blue: @color/black}"
+            tools:text="test" />
+    </RelativeLayout>
+</layout>
