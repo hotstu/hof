@@ -1,7 +1,8 @@
-package github.hotstu.demo.hof;
+package github.hotstu.lib.hof.widget;
 
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
+import github.hotstu.lib.hof.BR;
 
 
 public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {

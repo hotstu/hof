@@ -2,6 +2,7 @@ package github.hotstu.demo.hof;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
+import github.hotstu.lib.hof.chiba.Checkable;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
@@ -9,7 +10,7 @@ import androidx.databinding.ObservableBoolean;
  */
 public class Item implements Checkable {
     private final String name;
-    private final  ObservableBoolean checked;
+    private final ObservableBoolean checked;
 
 
     public Item(String name) {

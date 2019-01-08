@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="hof_black" >#000</color>
+    <color name="hof_blue" >#448AFF</color>
+    <color name="hof_bg_common_grey">#F0F0F0</color>
+    <color name="hof_selected_blue">#E3F2FD</color>
+</resources>

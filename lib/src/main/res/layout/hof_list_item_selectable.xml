@@ -6,14 +6,14 @@
 
         <variable
             name="item"
-            type="github.hotstu.demo.hof.Item" />
+            type="github.hotstu.lib.hof.chiba.Checkable" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_margin="5dp"
-        android:background="@drawable/s_btn_bg"
+        android:background="@drawable/hof_s_btn_bg"
         android:onClick="@{()->item.toggleChecked()}"
         app:selected="@{item.checked}">
 
@@ -22,6 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@{item.toString()}"
-            android:textColor="@{item.checked? @color/blue: @color/black}" />
+            android:textColor="@{item.checked? @color/hof_blue: @color/hof_black}" />
     </RelativeLayout>
 </layout>

@@ -5,21 +5,22 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
+import github.hotstu.lib.hof.chiba.Expandable;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
  * @since 2019/1/4
  */
-public class Group implements Expandable,Checkable {
+public class Group implements Expandable {
     private final String name;
-    public final List<Item> internalItems;
-    public final List<Item> fullItems;
-    public final ObservableBoolean expanded;
+    private final List<Item> collapseItems;
+    private final List<Item> fullItems;
+    private final ObservableBoolean expanded;
     private final ObservableBoolean mChecked;
 
     public Group(String name) {
         this.name = name;
-        internalItems = new ArrayList<>();
+        collapseItems = new ArrayList<>();
         fullItems = new ArrayList<>();
         expanded = new ObservableBoolean();
         mChecked = new ObservableBoolean();
@@ -27,11 +28,23 @@ public class Group implements Expandable,Checkable {
 
     public void addChild(Item itemB) {
         fullItems.add(itemB);
-        if (internalItems.size() < 6) {
-            internalItems.add(itemB);
+        if (collapseItems.size() < 6) {
+            collapseItems.add(itemB);
         }
     }
 
+    @Override
+    public List<Item> getCollapseItems() {
+        return collapseItems;
+    }
+    @Override
+    public List<Item> getFullItems() {
+        return fullItems;
+    }
+    @Override
+    public ObservableBoolean isExpanded() {
+        return expanded;
+    }
 
     @NonNull
     @Override
@@ -54,6 +67,7 @@ public class Group implements Expandable,Checkable {
         return mChecked;
     }
 
+    @Override
     public void toggle() {
         expanded.set(!expanded.get());
     }
