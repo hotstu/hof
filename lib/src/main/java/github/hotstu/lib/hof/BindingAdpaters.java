@@ -27,13 +27,7 @@ public class BindingAdpaters {
         }
         parent.setTag(factory.create(parent));
     }
-    @BindingAdapter("bind:hof_kana_presenter")
-    public static void bindKanaPresenter(ViewGroup parent, PresenterFactory factory) {
-        if (factory == null || parent == null) {
-            return;
-        }
-        parent.setTag(factory.create(parent));
-    }
+
 
     @BindingAdapter("items")
     public static void setChild(RecyclerView rv, List<Checkable> items) {

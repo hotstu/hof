@@ -11,5 +11,6 @@ import androidx.lifecycle.LiveData;
  */
 public interface Node {
     boolean isLeaf();
+    boolean isLeafParent();
     LiveData<List<Node>> getItems();
 }

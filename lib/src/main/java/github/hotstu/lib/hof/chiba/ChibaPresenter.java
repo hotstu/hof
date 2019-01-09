@@ -41,7 +41,6 @@ public abstract class ChibaPresenter implements Presenter {
     }
 
 
-    @Override
     public void setDataSet(List data) {
         if (mRightAdapter != null) {
             mRightAdapter.setDataSet(data);

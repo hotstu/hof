@@ -1,18 +1,19 @@
 package github.hotstu.lib.hof.kanagawa;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.List;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import github.hotstu.lib.hof.BR;
 import github.hotstu.lib.hof.Presenter;
 import github.hotstu.lib.hof.R;
-import github.hotstu.lib.hof.kanagawa.widget.HOFRecyclerContainer;
+import github.hotstu.lib.hof.kanagawa.model.Node;
+import github.hotstu.lib.hof.kanagawa.widget.KanaView;
 import github.hotstu.lib.hof.widget.BindingViewHolder;
 import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
 
@@ -23,20 +24,17 @@ import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
  */
 public class KanaPresenter implements Presenter {
 
-    private final MOTypedRecyclerAdapter mAdapter;
     private final LifecycleOwner lifecycleOwner;
+    private final KanaView mKanaView;
+    private final RecyclerView rv;
 
     public KanaPresenter(ViewGroup parent, LifecycleOwner lifecycleOwner) {
         this.lifecycleOwner = lifecycleOwner;
-        RecyclerView rv = parent.findViewById(R.id.rv1);
-        HOFRecyclerContainer container = parent.findViewById(R.id.container);
-        rv.setLayoutManager(new LinearLayoutManager(parent.getContext()));
-        mAdapter = new MOTypedRecyclerAdapter();
-        mAdapter.addDelegate(obtainDelegate());
-        rv.setAdapter(mAdapter);
+        rv = parent.findViewById(R.id.rv1);
+        mKanaView = parent.findViewById(R.id.kana);
     }
 
-    protected MOTypedRecyclerAdapter.AdapterDelegate obtainDelegate() {
+    protected MOTypedRecyclerAdapter.AdapterDelegate obtainDelegate(Node root, KanaPresenter presenter) {
         return new MOTypedRecyclerAdapter.AdapterDelegate() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(MOTypedRecyclerAdapter adapter, ViewGroup parent) {
@@ -48,21 +46,46 @@ public class KanaPresenter implements Presenter {
             @Override
             public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
                 ((BindingViewHolder) viewHolder).setItem(o);
+                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.presenter, presenter);
             }
 
             @Override
             public boolean isDelegateOf(Class<?> clazz, Object item, int position) {
-                return Object.class.isAssignableFrom(clazz);
+                return Node.class.isAssignableFrom(clazz);
             }
         };
     }
 
-    private KanaPresenter born() {
-        return null;
+    protected void onLeafClick(Node node) {
+
     }
 
-    @Override
-    public void setDataSet(List data) {
-        mAdapter.setDataSet(data);
+    public void onItemClick(Node node) {
+        if (node.isLeaf()) {
+            onLeafClick(node);
+            return;
+        }
+        mKanaView.setPresenter(parent -> {
+            KanaPresenter presenter = new KanaPresenter((ViewGroup) mKanaView.getChildAt(0), lifecycleOwner);
+            presenter.setDataSet(node);
+            return presenter;
+        });
+    }
+
+    public void setDataSet(Node rootNode) {
+        if (rootNode.isLeafParent()) {
+            mKanaView.setVisibility(View.GONE);
+            ViewGroup.LayoutParams layoutParams = rv.getLayoutParams();
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            rv.setLayoutParams(layoutParams);
+            //return;
+        }
+        rootNode.getItems().observe(lifecycleOwner, nodes -> {
+            MOTypedRecyclerAdapter mAdapter = new MOTypedRecyclerAdapter();
+            rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+            mAdapter.addDelegate(obtainDelegate(rootNode, this));
+            rv.setAdapter(mAdapter);
+            mAdapter.setDataSet(nodes);
+        });
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import github.hotstu.demo.hof.kana.MyNode;
+import github.hotstu.lib.hof.kanagawa.model.Node;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
@@ -13,12 +15,13 @@ import androidx.lifecycle.MutableLiveData;
  */
 public class DataSource {
     private static LiveData<List> sData;
+    private static LiveData<Node> sKana;
+
     public static LiveData<List> get() {
         if (sData == null) {
             sData = build();
         }
         return sData;
-
     }
 
     private static LiveData<List> build() {
@@ -34,6 +37,20 @@ public class DataSource {
 
         }
         ((MutableLiveData<List>) ret).setValue(list);
+        return ret;
+    }
+
+
+    public static LiveData<Node> getKanaNodes() {
+        if (sKana == null) {
+            sKana = buildKana();
+        }
+        return sKana;
+    }
+
+    private static LiveData<Node> buildKana() {
+        LiveData<Node> ret = new MutableLiveData<>();
+        ((MutableLiveData<Node>) ret).setValue(new MyNode("root", 0));
         return ret;
     }
 }

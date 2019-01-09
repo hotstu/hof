@@ -7,14 +7,19 @@
 
         <variable
             name="item"
-            type="Object" />
+            type="github.hotstu.lib.hof.kanagawa.model.Node" />
+
+        <variable
+            name="presenter"
+            type="github.hotstu.lib.hof.kanagawa.KanaPresenter" />
 
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/hof_s_section_bg">
+        android:background="@drawable/hof_s_section_bg"
+        android:onClick="@{()->presenter.onItemClick(item)}">
 
         <TextView
             android:layout_width="wrap_content"

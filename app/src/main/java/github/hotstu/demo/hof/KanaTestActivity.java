@@ -19,8 +19,8 @@ public class KanaTestActivity extends AppCompatActivity {
 
         PresenterFactory factory = (parent) -> {
             KanaPresenter presenter = new KanaPresenter(parent, this) {};
-            DataSource.get().observe(this, list -> {
-                presenter.setDataSet(list);
+            DataSource.getKanaNodes().observe(this, node -> {
+                presenter.setDataSet(node);
             });
             return presenter;
         };
