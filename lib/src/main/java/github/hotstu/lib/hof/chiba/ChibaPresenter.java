@@ -31,12 +31,12 @@ public abstract class ChibaPresenter implements Presenter {
     protected Expandable mScrollTopGroup;
     protected RecyclerView rvRight;
     protected MOTypedRecyclerAdapter mRightAdapter;
-    protected MOTypedRecyclerAdapter mHeaderAdpater;
+    protected MOTypedRecyclerAdapter mHeaderAdapter;
     protected ObservableField<List> data;
 
-    public ChibaPresenter(RecyclerView rvLeft, RecyclerView rvRight) {
-        this.rvRight = rvRight;
-        initLeft(rvLeft);
+    public ChibaPresenter(ViewGroup parent) {
+        this.rvRight = parent.findViewById(R.id.recyclerView2);
+        initLeft(parent.findViewById(R.id.recyclerView1));
         initRight(rvRight);
     }
 
@@ -46,14 +46,44 @@ public abstract class ChibaPresenter implements Presenter {
         if (mRightAdapter != null) {
             mRightAdapter.setDataSet(data);
         }
-        if (mHeaderAdpater != null) {
-            mHeaderAdpater.setDataSet(data);
+        if (mHeaderAdapter != null) {
+            mHeaderAdapter.setDataSet(data);
         }
     }
 
-    private void initRight(RecyclerView right) {
-        mRightAdapter = new MOTypedRecyclerAdapter();
-        MOTypedRecyclerAdapter.AdapterDelegate hdeaderDelegate0 = new MOTypedRecyclerAdapter.AdapterDelegate() {
+    /**
+     *  custom the item by override this method
+     * @return
+     */
+    protected MOTypedRecyclerAdapter.AdapterDelegate obtainLeftDelegate() {
+        return new MOTypedRecyclerAdapter.AdapterDelegate() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(MOTypedRecyclerAdapter adapter, ViewGroup parent) {
+                ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                        R.layout.hof_list_item_header, parent, false);
+                return new BindingViewHolder<>(binding);
+            }
+
+            @Override
+            public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
+                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.presenter, ChibaPresenter.this);
+                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.position, viewHolder.getAdapterPosition());
+                ((BindingViewHolder) viewHolder).setItem(o);
+            }
+
+            @Override
+            public boolean isDelegateOf(Class<?> clazz, Object item, int position) {
+                return Expandable.class.isAssignableFrom(clazz);
+            }
+        };
+    }
+
+    /**
+     * custom the item by override this method
+     * @return
+     */
+    protected MOTypedRecyclerAdapter.AdapterDelegate obtainRightDelegate() {
+        return new MOTypedRecyclerAdapter.AdapterDelegate() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(MOTypedRecyclerAdapter adapter, ViewGroup parent) {
                 return new BindingViewHolder<>(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
@@ -71,6 +101,11 @@ public abstract class ChibaPresenter implements Presenter {
                 return Expandable.class.isAssignableFrom(clazz);
             }
         };
+    }
+
+    private void initRight(RecyclerView right) {
+        mRightAdapter = new MOTypedRecyclerAdapter();
+        MOTypedRecyclerAdapter.AdapterDelegate hdeaderDelegate0 = obtainRightDelegate();
         mRightAdapter.addDelegate(hdeaderDelegate0);
         Context context = right.getContext();
         right.setLayoutManager(new LinearLayoutManager(context));
@@ -111,32 +146,15 @@ public abstract class ChibaPresenter implements Presenter {
         });
     }
 
+
+
     private void initLeft(RecyclerView left) {
-        mHeaderAdpater = new MOTypedRecyclerAdapter();
-        MOTypedRecyclerAdapter.AdapterDelegate headerDelegate = new MOTypedRecyclerAdapter.AdapterDelegate() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(MOTypedRecyclerAdapter adapter, ViewGroup parent) {
-                ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.hof_list_item_header, parent, false);
-                return new BindingViewHolder<>(binding);
-            }
-
-            @Override
-            public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
-                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.presenter, ChibaPresenter.this);
-                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.position, viewHolder.getAdapterPosition());
-                ((BindingViewHolder) viewHolder).setItem(o);
-            }
-
-            @Override
-            public boolean isDelegateOf(Class<?> clazz, Object item, int position) {
-                return Expandable.class.isAssignableFrom(clazz);
-            }
-        };
-        mHeaderAdpater.addDelegate(headerDelegate);
+        mHeaderAdapter = new MOTypedRecyclerAdapter();
+        MOTypedRecyclerAdapter.AdapterDelegate headerDelegate = obtainLeftDelegate();
+        mHeaderAdapter.addDelegate(headerDelegate);
         Context context = left.getContext();
         left.setLayoutManager(new LinearLayoutManager(context));
-        left.setAdapter(mHeaderAdpater);
+        left.setAdapter(mHeaderAdapter);
         left.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
     }
 

@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import androidx.annotation.IdRes;
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,15 +19,20 @@ import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
  * @since 2019/1/8
  */
 public class BindingAdpaters {
-    @BindingAdapter(value = {"bind:hof_presenter", "bind:hof_leftRvId", "bind:hof_rightRvId"}, requireAll = true)
-    public static void bindPresenter(ViewGroup parent, PresenterFactory factory, @IdRes int leftRvId, @IdRes int rightRvId) {
-        RecyclerView rvLeft = parent.findViewById(leftRvId);
-        RecyclerView rvRight = parent.findViewById(rightRvId);
-        if (factory == null || rvLeft == null || rvRight == null) {
+    @BindingAdapter("bind:hof_chiba_presenter")
+    public static void bindChibaPresenter(ViewGroup parent, PresenterFactory factory) {
+
+        if (factory == null || parent == null) {
             return;
         }
-
-        parent.setTag(factory.create(rvLeft, rvRight));
+        parent.setTag(factory.create(parent));
+    }
+    @BindingAdapter("bind:hof_kana_presenter")
+    public static void bindKanaPresenter(ViewGroup parent, PresenterFactory factory) {
+        if (factory == null || parent == null) {
+            return;
+        }
+        parent.setTag(factory.create(parent));
     }
 
     @BindingAdapter("items")

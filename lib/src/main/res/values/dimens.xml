@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="hof_common_parnet_node_width" type="dimen">100dp</item>
+</resources>

@@ -13,9 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        bind:hof_leftRvId="@{@id/recyclerView1}"
-        bind:hof_presenter="@{presenter}"
-        bind:hof_rightRvId="@{@id/recyclerView2}">
+        bind:hof_chiba_presenter="@{presenter}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView1"

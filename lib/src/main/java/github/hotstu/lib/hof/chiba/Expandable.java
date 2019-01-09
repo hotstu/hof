@@ -9,11 +9,16 @@ import androidx.databinding.ObservableBoolean;
  * @since 2019/1/3
  * 说明
  */
-public interface Expandable extends Checkable{
+public interface Expandable extends Checkable {
     void expand();
+
     void collapse();
+
     void toggle();
-     List getCollapseItems();
-     List getFullItems();
-     ObservableBoolean isExpanded();
+
+    List getCollapseItems();
+
+    List getFullItems();
+
+    ObservableBoolean isExpanded();
 }

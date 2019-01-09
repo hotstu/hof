@@ -4,26 +4,25 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import github.hotstu.demo.hof.databinding.ActivityMainBinding;
+import github.hotstu.demo.hof.databinding.ActivityKanaBinding;
 import github.hotstu.lib.hof.PresenterFactory;
-import github.hotstu.lib.hof.chiba.ChibaPresenter;
+import github.hotstu.lib.hof.kanagawa.KanaPresenter;
 
-public class MainActivity extends AppCompatActivity {
+public class KanaTestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this,
-                R.layout.activity_main);
+        ActivityKanaBinding binding = DataBindingUtil.setContentView(this,
+                R.layout.activity_kana);
 
         PresenterFactory factory = (parent) -> {
-            ChibaPresenter chibaPresenter = new ChibaPresenter(parent) {};
+            KanaPresenter presenter = new KanaPresenter(parent, this) {};
             DataSource.get().observe(this, list -> {
-                chibaPresenter.setDataSet(list);
-
+                presenter.setDataSet(list);
             });
-            return chibaPresenter;
+            return presenter;
         };
         binding.setVariable(BR.presenter, factory);
 

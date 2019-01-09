@@ -1,6 +1,6 @@
 package github.hotstu.lib.hof;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.ViewGroup;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
@@ -8,5 +8,5 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since 2019/1/8
  */
 public interface PresenterFactory {
-    Presenter create(RecyclerView rvleft, RecyclerView rvRight);
+    Presenter create(ViewGroup parent);
 }
