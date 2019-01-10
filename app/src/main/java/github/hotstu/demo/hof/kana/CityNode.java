@@ -1,46 +1,52 @@
 package github.hotstu.demo.hof.kana;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MediatorLiveData;
+import github.hotstu.demo.hof.App;
 import github.hotstu.lib.hof.kanagawa.model.Node;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
  * @desc
- * @since 2019/1/9
+ * @since 2019/1/10
  */
-public class MyNode implements Node {
+public class CityNode implements Node<CityNode> {
     private final String name;
-    private final LiveData<List<? extends Node>> items;
+    private final LiveData<List<CityNode>> items;
     private final int deep;
     private final ObservableBoolean checked;
     private final Node parent;
+    private final Map raw;
 
-    public MyNode(Node parent, String name, int deep) {
+    public CityNode(Node parent, String name, int deep, Map raw) {
         this.parent = parent;
         this.name = name;
         this.deep = deep;
+        this.raw = raw;
         this.checked = new ObservableBoolean();
         this.items = new MediatorLiveData<>();
-        LiveData<List<Node>> source = LiveDataReactiveStreams.fromPublisher(s -> {
-            List<Node> ret = new ArrayList<>();
-            for (int i = 0; i < 20; i++) {
-                ret.add(new MyNode(this, name+"-" + i, deep + 1));
-            }
-            s.onNext(ret);
+        LiveData<List<CityNode>> source = LiveDataReactiveStreams.fromPublisher(s -> {
+            List<CityNode> cityNodes = CityRepo.getInstance(App.sApp).obtain(this);
+            s.onNext(cityNodes);
         });
-        ((MediatorLiveData<List<? extends Node>>) this.items).addSource(source, nodes -> {
-            ((MediatorLiveData<List<? extends Node>>) this.items).setValue(nodes);
-            ((MediatorLiveData<List<? extends Node>>) this.items).removeSource(source);
+        ((MediatorLiveData<List<CityNode>>) this.items).addSource(source, nodes -> {
+            ((MediatorLiveData<List<CityNode>>) this.items).setValue(nodes);
+            ((MediatorLiveData<List<CityNode>>) this.items).removeSource(source);
         });
+    }
 
+    public Map getRaw() {
+        return raw;
+    }
 
+    public int getDeep() {
+        return deep;
     }
 
     public String getName() {
@@ -70,11 +76,9 @@ public class MyNode implements Node {
 
 
     @Override
-    public LiveData<List<? extends Node>> getItems() {
+    public LiveData<List<CityNode>> getItems() {
         return items;
     }
-
-
 
     @Override
     public void setChecked(boolean value) {
@@ -89,7 +93,7 @@ public class MyNode implements Node {
         if (parent == null) {
             return;
         }
-        ((MyNode) parent).onChildCheckChange(this, pre, now);
+        ((CityNode) parent).onChildCheckChange(this, pre, now);
     }
 
     public void onChildCheckChange(Node child, boolean pre, boolean now) {

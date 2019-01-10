@@ -20,7 +20,7 @@ import github.hotstu.lib.hof.Presenter;
 import github.hotstu.lib.hof.R;
 import github.hotstu.lib.hof.kanagawa.model.Node;
 import github.hotstu.lib.hof.kanagawa.widget.KanaView;
-import github.hotstu.lib.hof.widget.BindingViewHolder;
+import github.hotstu.naiue.widget.recycler.BindingViewHolder;
 import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
 
 /**
@@ -34,7 +34,7 @@ public class KanaPresenter implements Presenter {
     private final KanaView mKanaView;
     private final RecyclerView rv;
     private final Node rootNode;
-    private final Observer<List<Node>> listObserver;
+    private final Observer<List<? extends Node>> listObserver;
 
     public KanaPresenter(KanaView parent, LifecycleOwner lifecycleOwner, Node root) {
         ViewGroup container = parent.findViewById(R.id.container);
@@ -67,7 +67,7 @@ public class KanaPresenter implements Presenter {
      *
      * @return
      */
-    protected Observer<List<Node>> obtainListObserver(KanaView mKanaView, RecyclerView rv, Node rootNode) {
+    protected Observer<List<? extends Node>> obtainListObserver(KanaView mKanaView, RecyclerView rv, Node rootNode) {
         return nodes -> {
             Context context = mKanaView.getContext();
             MOTypedRecyclerAdapter mAdapter = new MOTypedRecyclerAdapter();
@@ -122,8 +122,9 @@ public class KanaPresenter implements Presenter {
 
             @Override
             public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
-                ((BindingViewHolder) viewHolder).setItem(o);
-                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.presenter, presenter);
+                ((BindingViewHolder) viewHolder).setItem(BR.item, o);
+                ((BindingViewHolder) viewHolder).setItem(BR.presenter, presenter);
+                ((BindingViewHolder) viewHolder).executePendingBindings();
             }
 
             @Override

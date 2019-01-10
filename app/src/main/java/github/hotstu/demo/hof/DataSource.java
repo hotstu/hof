@@ -5,6 +5,8 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import github.hotstu.demo.hof.kana.CityNode;
+import github.hotstu.demo.hof.kana.CityRepo;
 import github.hotstu.demo.hof.kana.MyNode;
 import github.hotstu.lib.hof.kanagawa.model.Node;
 
@@ -49,6 +51,13 @@ public class DataSource {
     }
 
     private static LiveData<Node> buildKana() {
+        LiveData<Node> ret = new MutableLiveData<>();
+        CityNode root = new CityNode(null, "root", 0, CityRepo.getInstance(App.sApp).getMap());
+        ((MutableLiveData<Node>) ret).setValue(root);
+        return ret;
+    }
+
+    private static LiveData<Node> buildKanaOld() {
         LiveData<Node> ret = new MutableLiveData<>();
         ((MutableLiveData<Node>) ret).setValue(new MyNode(null, "root", 0));
         return ret;

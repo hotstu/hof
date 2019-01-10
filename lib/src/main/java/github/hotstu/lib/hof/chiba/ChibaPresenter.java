@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import github.hotstu.lib.hof.BR;
 import github.hotstu.lib.hof.Presenter;
 import github.hotstu.lib.hof.R;
-import github.hotstu.lib.hof.widget.BindingViewHolder;
+import github.hotstu.naiue.widget.recycler.BindingViewHolder;
 import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
 
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
@@ -65,9 +65,10 @@ public abstract class ChibaPresenter implements Presenter {
 
             @Override
             public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
-                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.presenter, ChibaPresenter.this);
-                ((BindingViewHolder) viewHolder).getBinding().setVariable(BR.position, viewHolder.getAdapterPosition());
-                ((BindingViewHolder) viewHolder).setItem(o);
+                ((BindingViewHolder) viewHolder).setItem(BR.presenter, ChibaPresenter.this);
+                ((BindingViewHolder) viewHolder).setItem(BR.position, viewHolder.getAdapterPosition());
+                ((BindingViewHolder) viewHolder).setItem(BR.item, o);
+                ((BindingViewHolder) viewHolder).executePendingBindings();
             }
 
             @Override
@@ -92,7 +93,8 @@ public abstract class ChibaPresenter implements Presenter {
             @Override
             public void onBindViewHolder(MOTypedRecyclerAdapter moTypedRecyclerAdapter, RecyclerView.ViewHolder viewHolder, Object o) {
                 BindingViewHolder vh = (BindingViewHolder) viewHolder;
-                vh.setItem(o);
+                vh.setItem(BR.item, o);
+                vh.executePendingBindings();
             }
 
             @Override
@@ -136,7 +138,7 @@ public abstract class ChibaPresenter implements Presenter {
                     return;
                 }
                 BindingViewHolder holder = (BindingViewHolder) vh;
-                Expandable group = (Expandable) holder.getItem();
+                Expandable group = (Expandable) holder.getItem(BR.item);
                 if (group == null) {
                     return;
                 }

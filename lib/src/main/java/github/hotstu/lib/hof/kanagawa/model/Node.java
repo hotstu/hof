@@ -10,10 +10,10 @@ import github.hotstu.lib.hof.chiba.Checkable;
  * @desc
  * @since 2019/1/8
  */
-public interface Node extends Checkable {
+public interface Node<T> extends Checkable {
     boolean isLeaf();
     boolean isLeafParent();
     boolean isRoot();
-    LiveData<List<Node>> getItems();
+    LiveData<List<T>> getItems();
 
 }
