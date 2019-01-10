@@ -50,7 +50,7 @@ public class DataSource {
 
     private static LiveData<Node> buildKana() {
         LiveData<Node> ret = new MutableLiveData<>();
-        ((MutableLiveData<Node>) ret).setValue(new MyNode("root", 0));
+        ((MutableLiveData<Node>) ret).setValue(new MyNode(null, "root", 0));
         return ret;
     }
 }

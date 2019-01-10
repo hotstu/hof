@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/hof_s_section_bg"
+        android:background="@drawable/hof_common_bg_white"
         app:selected="@{item.checked}"
         android:onClick="@{()->presenter.onItemClick(item)}">
 
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@{item.toString()}"
+            android:textColor="@{item.checked? @color/hof_blue: @color/hof_black}"
             tools:text="test" />
     </RelativeLayout>
 </layout>

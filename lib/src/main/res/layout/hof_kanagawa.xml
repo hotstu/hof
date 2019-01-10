@@ -15,5 +15,5 @@
         android:id="@+id/kana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:presenter="@{presenter}" />
+        app:hof_kana_presenter="@{presenter}" />
 </layout>

@@ -18,15 +18,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/hof_s_section_bg"
-        app:selected="@{item.checked}"
-        android:onClick="@{()->presenter.onItemClick(item)}">
+        android:background="@drawable/hof_common_bg_white"
+        android:onClick="@{()->presenter.onItemClick(item)}"
+        app:selected="@{item.checked}">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@{item.toString()}"
+            android:textColor="@{item.checked? @color/hof_blue: @color/hof_black}"
             tools:text="test" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:drawable/divider_horizontal_bright" />
     </RelativeLayout>
 </layout>

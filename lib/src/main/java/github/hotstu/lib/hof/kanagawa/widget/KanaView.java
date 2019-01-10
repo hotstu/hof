@@ -2,15 +2,10 @@ package github.hotstu.lib.hof.kanagawa.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import github.hotstu.lib.hof.PresenterFactory;
-import github.hotstu.lib.hof.R;
 import github.hotstu.lib.hof.kanagawa.KanaPresenter;
 
 /**
@@ -20,7 +15,6 @@ import github.hotstu.lib.hof.kanagawa.KanaPresenter;
  */
 public class KanaView extends FrameLayout {
 
-    private ViewDataBinding binding;
     private KanaPresenter mPresenter;
 
     public KanaView(@NonNull Context context) {
@@ -41,18 +35,18 @@ public class KanaView extends FrameLayout {
     private void init() {
     }
 
-    public void setPresenter(PresenterFactory presenter) {
-        if (binding != null) {
-            binding.unbind();
+    public void setPresenter(KanaPresenter presenter) {
+        if (mPresenter != null && !mPresenter.equals(presenter)) {
+            mPresenter.destroy();
         }
-        removeAllViews();
-        binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()),
-                R.layout.hof_kana_view, this, true);
-        mPresenter = (KanaPresenter) presenter.create(this);
+        mPresenter = presenter;
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        if (mPresenter != null) {
+            mPresenter.destroy();
+        }
     }
 }

@@ -7,6 +7,6 @@ import android.view.ViewGroup;
  * @desc
  * @since 2019/1/8
  */
-public interface PresenterFactory {
-    Presenter create(ViewGroup parent);
+public interface PresenterFactory<T extends Presenter> {
+    T create(ViewGroup parent);
 }
