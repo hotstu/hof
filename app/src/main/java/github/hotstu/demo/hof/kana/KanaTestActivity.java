@@ -1,12 +1,17 @@
-package github.hotstu.demo.hof;
+package github.hotstu.demo.hof.kana;
 
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import github.hotstu.demo.hof.DataSource;
+import github.hotstu.demo.hof.R;
 import github.hotstu.demo.hof.databinding.ActivityKanaBinding;
 import github.hotstu.lib.hof.kanagawa.KanaPresenter;
 
+@Route(path = "/app/kana", name = "组织树控件测试")
 public class KanaTestActivity extends AppCompatActivity {
 
     @Override

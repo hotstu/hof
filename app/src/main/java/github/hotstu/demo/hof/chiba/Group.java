@@ -1,4 +1,4 @@
-package github.hotstu.demo.hof;
+package github.hotstu.demo.hof.chiba;
 
 import java.util.ArrayList;
 import java.util.List;

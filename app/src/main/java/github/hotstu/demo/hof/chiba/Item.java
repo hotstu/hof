@@ -1,4 +1,4 @@
-package github.hotstu.demo.hof;
+package github.hotstu.demo.hof.chiba;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;

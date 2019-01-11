@@ -1,33 +1,30 @@
 package github.hotstu.demo.hof;
 
 import android.os.Bundle;
+import android.view.View;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import github.hotstu.demo.hof.databinding.ActivityMainBinding;
-import github.hotstu.lib.hof.PresenterFactory;
-import github.hotstu.lib.hof.chiba.ChibaPresenter;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this,
-                R.layout.activity_main);
-
-        PresenterFactory factory = (parent) -> {
-            ChibaPresenter chibaPresenter = new ChibaPresenter(parent) {};
-            DataSource.get().observe(this, list -> {
-                chibaPresenter.setDataSet(list);
-
-            });
-            return chibaPresenter;
-        };
-        binding.setVariable(BR.presenter, factory);
-
-
+        setContentView(R.layout.activity_main);
     }
 
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.chiba:
+                ARouter.getInstance().build("/app/chiba").navigation();
+                break;
+            case R.id.kana:
+                ARouter.getInstance().build("/app/kana").navigation();
+                break;
+
+        }
+    }
 }

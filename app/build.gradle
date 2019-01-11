@@ -12,6 +12,11 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     dataBinding {
         enabled = true
@@ -37,4 +42,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.0.0'
     implementation project(':lib')
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }
