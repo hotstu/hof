@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import github.hotstu.lib.hof.chiba.Checkable;
+import github.hotstu.lib.hof.chiba.ChibaPresenterFactory;
 import github.hotstu.lib.hof.kanagawa.KanaPresenter;
 import github.hotstu.lib.hof.kanagawa.widget.KanaView;
 import github.hotstu.naiue.widget.recycler.BindingViewHolder;
@@ -22,7 +23,7 @@ import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
  */
 public class BindingAdpaters {
     @BindingAdapter("bind:hof_chiba_presenter")
-    public static void bindChibaPresenter(ViewGroup parent, PresenterFactory factory) {
+    public static void bindChibaPresenter(ViewGroup parent, ChibaPresenterFactory factory) {
 
         if (factory == null || parent == null) {
             return;
@@ -30,7 +31,7 @@ public class BindingAdpaters {
         parent.setTag(factory.create(parent));
     }
     @BindingAdapter("bind:hof_kana_presenter")
-    public static void bindKanaPresenter(KanaView parent, PresenterFactory factory) {
+    public static void bindKanaPresenter(KanaView parent, ChibaPresenterFactory factory) {
         if (factory == null || parent == null) {
             return;
         }

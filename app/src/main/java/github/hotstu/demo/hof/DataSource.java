@@ -20,6 +20,7 @@ import github.hotstu.lib.hof.kanagawa.model.Node;
 public class DataSource {
     private static LiveData<List> sData;
     private static LiveData<Node> sKana;
+    private static LiveData<Node> sKana2;
 
     public static LiveData<List> get() {
         if (sData == null) {
@@ -50,6 +51,12 @@ public class DataSource {
             sKana = buildKana();
         }
         return sKana;
+    }
+    public static LiveData<Node> getKanaNodes2() {
+        if (sKana2 == null) {
+            sKana2 = buildKanaOld();
+        }
+        return sKana2;
     }
 
     private static LiveData<Node> buildKana() {

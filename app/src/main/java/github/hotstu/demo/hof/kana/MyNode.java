@@ -55,12 +55,12 @@ public class MyNode implements Node {
 
     @Override
     public boolean isLeaf() {
-        return  deep >= 3;
+        return  deep >= 5;
     }
 
     @Override
     public boolean isLeafParent() {
-        return deep >= 2;
+        return deep >= 4;
     }
 
     @Override

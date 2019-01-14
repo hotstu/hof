@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".kana.KanaTestActivity"></activity>
+        <activity android:name=".kana.KanaTest1Activity"></activity>
+        <activity android:name=".kana.KanaTest2Activity"></activity>
         <activity android:name=".chiba.ChibaActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>

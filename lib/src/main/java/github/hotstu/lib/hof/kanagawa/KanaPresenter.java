@@ -35,13 +35,15 @@ public class KanaPresenter implements Presenter {
     private final RecyclerView rv;
     private final Node rootNode;
     private final Observer<List<? extends Node>> listObserver;
+    private final KanaPresenterFactory kanaPresenterFactory;
 
-    public KanaPresenter(KanaView parent, LifecycleOwner lifecycleOwner, Node root) {
+    public KanaPresenter(KanaView parent, LifecycleOwner lifecycleOwner, Node root, KanaPresenterFactory factory) {
         ViewGroup container = parent.findViewById(R.id.container);
         if (container == null) {
             LayoutInflater.from(parent.getContext()).inflate(R.layout.hof_kana_view, parent, true);
         }
         container = parent.findViewById(R.id.container);
+        kanaPresenterFactory = factory;
         this.lifecycleOwner = lifecycleOwner;
         rv = container.findViewById(R.id.rv1);
         mKanaView = container.findViewById(R.id.kana);
@@ -151,7 +153,6 @@ public class KanaPresenter implements Presenter {
     }
 
     private void born(Node node) {
-        mKanaView.setPresenter(new KanaPresenter(mKanaView, lifecycleOwner, node));
-
+        mKanaView.setPresenter(kanaPresenterFactory.create(mKanaView, lifecycleOwner, node, kanaPresenterFactory));
     }
 }
