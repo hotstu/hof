@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".kana.KanaTest1Activity"></activity>
-        <activity android:name=".kana.KanaTest2Activity"></activity>
-        <activity android:name=".chiba.ChibaActivity"></activity>
+        <activity android:name=".kana.KanaTest1Activity" />
+        <activity android:name=".kana.KanaTest2Activity" />
+        <activity android:name=".chiba.ChibaActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".yoko.YokoTestActivity"></activity>
     </application>
 
 </manifest>

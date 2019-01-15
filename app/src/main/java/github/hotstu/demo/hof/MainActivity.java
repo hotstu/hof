@@ -22,17 +22,13 @@ public class MainActivity extends AppCompatActivity {
                 ARouter.getInstance().build("/app/chiba").navigation();
                 break;
             case R.id.kana:
-                //hack ARouter??
                 ARouter.getInstance().build("/app/kana").navigation();
                 break;
             case R.id.kana2:
-                //hack ARouter??
                 ARouter.getInstance().build("/app/kana2").navigation();
                 break;
-            case R.id.test:
-                //hack ARouter??
-                Object navigation = ARouter.getInstance().build("/hack/demo").navigation();
-                System.out.println(navigation);
+            case R.id.yoko:
+                 ARouter.getInstance().build("/app/yoko").navigation();
                 break;
 
         }
