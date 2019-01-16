@@ -3,7 +3,6 @@ package github.hotstu.demo.hof.yoko;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
@@ -12,8 +11,8 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableInt;
 import androidx.databinding.ViewDataBinding;
-import github.hotstu.demo.hof.R;
 import github.hotstu.demo.hof.BR;
+import github.hotstu.demo.hof.R;
 import github.hotstu.lib.hof.yokohama.YokoView;
 
 @Route(path = "/app/yoko", name = "抽屉菜单")
@@ -21,6 +20,8 @@ public class YokoTestActivity extends AppCompatActivity {
 
     private YokoView yokoView;
     private ObservableInt currentSelect = new ObservableInt();
+    private ViewDataBinding mBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,8 @@ public class YokoTestActivity extends AppCompatActivity {
                 Log.d("hof", "onExpanded");
             }
         });
-        yokoView.sync();
+        mBinding = yokoView.initMenuView(R.layout.include_yoko_container_layout);
+
     }
 
 
@@ -58,30 +60,25 @@ public class YokoTestActivity extends AppCompatActivity {
         }
         if (view.getId() == R.id.toggle) {
             yokoView.collapseThenExpand(() -> {
-                //here switch content of menu
-                TextView viewById = yokoView.getMenuView().findViewById(R.id.text);
-                viewById.setText("栏目0内容");
+                mBinding.setVariable(BR.text, "栏目0内容");
             });
         }
         if (view.getId() == R.id.cte) {
             yokoView.collapseThenExpand(() -> {
-                //here switch content of menu
-                TextView viewById = yokoView.getMenuView().findViewById(R.id.text);
-                viewById.setText("栏目1内容");
+                mBinding.setVariable(BR.text, "栏目1内容");
+
             });
         }
         if (view.getId() == R.id.cte2) {
             yokoView.collapseThenExpand(() -> {
-                //here switch content of menu
-                TextView viewById = yokoView.getMenuView().findViewById(R.id.text);
-                viewById.setText("栏目2内容");
+                mBinding.setVariable(BR.text, "栏目2内容");
+
             });
         }
         if (view.getId() == R.id.cte3) {
             yokoView.collapseThenExpand(() -> {
-                //here switch content of menu
-                TextView viewById = yokoView.getMenuView().findViewById(R.id.text);
-                viewById.setText("栏目3内容");
+                mBinding.setVariable(BR.text, "栏目3内容");
+
             });
         }
         currentSelect.set(view.getId());

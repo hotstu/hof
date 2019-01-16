@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import github.hotstu.lib.hof.R;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
@@ -17,13 +19,14 @@ import github.hotstu.lib.hof.R;
  */
 public class YokoView extends FrameLayout {
 
+
     public interface YokoAdapter {
         void onCollapsed(YokoView view);
 
         void onExpanded(YokoView view);
     }
 
-    private final FrameLayout mView;
+    private View mView;
     private YokoAdapter mAdapter;
     private boolean animating;
 
@@ -37,16 +40,26 @@ public class YokoView extends FrameLayout {
 
     public YokoView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        LayoutInflater.from(getContext()).inflate(R.layout.hof_yoko_container_layout, this, true);
-        mView = findViewById(R.id.container);
+    }
+
+    public ViewDataBinding initMenuView(@LayoutRes int resId) {
+        removeAllViews();
+        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()),
+                resId, this, true);
+        mView = binding.getRoot();
         mView.setClickable(true);
-        setOnClickListener(v ->{
+        sync();
+        setOnClickListener(v -> {
             if (!animating) {
                 toggle();
             }
         });
+        return binding;
     }
 
+    public View getMenuView() {
+        return mView;
+    }
 
     public void sync() {
         setVisibility(isCollapsed() ? View.GONE : View.VISIBLE);
@@ -68,13 +81,10 @@ public class YokoView extends FrameLayout {
         }
     }
 
-    public FrameLayout getMenuView() {
-        return mView;
-    }
 
     public void collapse() {
-        mView.animate()
-                .translationY(-mView.getHeight())
+        getMenuView().animate()
+                .translationY(-getMenuView().getHeight())
                 .withStartAction(() -> {
                     animating = true;
                 })
@@ -87,15 +97,15 @@ public class YokoView extends FrameLayout {
     }
 
     public boolean isCollapsed() {
-        return mView.getTranslationY() <= -mView.getHeight();
+        return getMenuView().getTranslationY() <= -getMenuView().getHeight();
     }
 
     public boolean isExpanded() {
-        return mView.getTranslationY() >= 0;
+        return getMenuView().getTranslationY() >= 0;
     }
 
     public void expand(@Nullable Runnable beforeExpand) {
-        mView.animate()
+        getMenuView().animate()
                 .translationY(0)
                 .withStartAction(() -> {
                     animating = true;
@@ -116,8 +126,8 @@ public class YokoView extends FrameLayout {
         if (isCollapsed()) {
             expand(beforeExpand);
         } else {
-            mView.animate()
-                    .translationY(-mView.getHeight())
+            getMenuView().animate()
+                    .translationY(-getMenuView().getHeight())
                     .withStartAction(() -> {
                         animating = true;
                     })
