@@ -1,9 +1,16 @@
+[![author](https://img.shields.io/badge/author-hglf-blue.svg)](https://github.com/hotstu)
+[![Download](https://api.bintray.com/packages/hglf/maven/hof/images/download.svg) ](https://bintray.com/hglf/maven/hof/_latestVersion)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-
-
-[![](https://badge.juejin.im/entry/5c413cfae51d453211565aaf/likes.svg?style=flat-square)](https://juejin.im/post/5c413bc4e51d45518c67ed7a)
 # hof
+====================
 仿携程/美团/京东/淘宝筛选控件
+
+# 使用
+```groovy
+    implementation 'github.hotstu.hof:hof:1.0.0'
+
+```
 
 [介绍](https://www.jianshu.com/p/aeff6d401033)
 
