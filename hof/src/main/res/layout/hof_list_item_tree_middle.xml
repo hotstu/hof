@@ -13,8 +13,6 @@
             name="presenter"
             type="github.hotstu.hof.kanagawa.KanaPresenter" />
 
-        <import type="android.view.View" />
-
     </data>
 
     <RelativeLayout
@@ -32,13 +30,12 @@
             android:textColor="@{item.checked? @color/hof_blue: @color/hof_black}"
             tools:text="test" />
 
-        <ImageView
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:visibility="@{item.checked?View.VISIBLE:View.GONE}"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/common_icon_city_check" />
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:drawable/divider_horizontal_bright" />
     </RelativeLayout>
 </layout>

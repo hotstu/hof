@@ -1,11 +1,12 @@
 package github.hotstu.demo.hof.chiba;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableBoolean;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.databinding.ObservableBoolean;
-import github.hotstu.lib.hof.chiba.Expandable;
+import github.hotstu.hof.chiba.Expandable;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>

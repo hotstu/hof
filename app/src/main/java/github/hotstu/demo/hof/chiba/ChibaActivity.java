@@ -9,8 +9,8 @@ import androidx.databinding.ViewDataBinding;
 import github.hotstu.demo.hof.BR;
 import github.hotstu.demo.hof.DataSource;
 import github.hotstu.demo.hof.R;
-import github.hotstu.lib.hof.chiba.ChibaPresenterFactory;
-import github.hotstu.lib.hof.chiba.ChibaPresenter;
+import github.hotstu.hof.chiba.ChibaPresenterFactory;
+import github.hotstu.hof.chiba.ChibaPresenter;
 
 public class ChibaActivity extends AppCompatActivity {
 

@@ -13,32 +13,20 @@
             name="presenter"
             type="github.hotstu.hof.kanagawa.KanaPresenter" />
 
-        <import type="android.view.View" />
-
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/hof_common_bg_white"
-        android:onClick="@{()->presenter.onItemClick(item)}"
-        app:selected="@{item.checked}">
+        android:background="@drawable/hof_s_section_bg"
+        app:selected="@{item.checked}"
+        android:onClick="@{()->presenter.onItemClick(item)}">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@{item.toString()}"
-            android:textColor="@{item.checked? @color/hof_blue: @color/hof_black}"
             tools:text="test" />
-
-        <ImageView
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:visibility="@{item.checked?View.VISIBLE:View.GONE}"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/common_icon_city_check" />
     </RelativeLayout>
 </layout>

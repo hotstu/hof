@@ -8,7 +8,7 @@ import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MediatorLiveData;
-import github.hotstu.lib.hof.kanagawa.model.Node;
+import github.hotstu.hof.kanagawa.model.Node;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>

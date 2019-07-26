@@ -2,7 +2,7 @@ package github.hotstu.demo.hof.chiba;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
-import github.hotstu.lib.hof.chiba.Checkable;
+import github.hotstu.hof.chiba.Checkable;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>

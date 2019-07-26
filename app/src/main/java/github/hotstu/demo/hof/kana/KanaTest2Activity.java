@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil;
 import github.hotstu.demo.hof.DataSource;
 import github.hotstu.demo.hof.R;
 import github.hotstu.demo.hof.databinding.ActivityKanaBinding;
-import github.hotstu.lib.hof.kanagawa.KanaPresenter;
-import github.hotstu.lib.hof.kanagawa.KanaPresenterFactory;
+import github.hotstu.hof.kanagawa.KanaPresenter;
+import github.hotstu.hof.kanagawa.KanaPresenterFactory;
 
 public class KanaTest2Activity extends AppCompatActivity {
 

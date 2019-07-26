@@ -10,7 +10,7 @@ import github.hotstu.demo.hof.chiba.Item;
 import github.hotstu.demo.hof.kana.CityNode;
 import github.hotstu.demo.hof.kana.CityRepo;
 import github.hotstu.demo.hof.kana.MyNode;
-import github.hotstu.lib.hof.kanagawa.model.Node;
+import github.hotstu.hof.kanagawa.model.Node;
 
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>

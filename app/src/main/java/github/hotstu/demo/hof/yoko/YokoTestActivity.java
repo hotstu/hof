@@ -12,7 +12,7 @@ import androidx.databinding.ObservableInt;
 import androidx.databinding.ViewDataBinding;
 import github.hotstu.demo.hof.BR;
 import github.hotstu.demo.hof.R;
-import github.hotstu.lib.hof.yokohama.YokoView;
+import github.hotstu.hof.yokohama.YokoView;
 
 public class YokoTestActivity extends AppCompatActivity {
 

@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import github.hotstu.demo.hof.DataSource;
 import github.hotstu.demo.hof.R;
 import github.hotstu.demo.hof.databinding.ActivityKanaBinding;
-import github.hotstu.lib.hof.BR;
-import github.hotstu.lib.hof.kanagawa.KanaPresenter;
-import github.hotstu.lib.hof.kanagawa.KanaPresenterFactory;
-import github.hotstu.lib.hof.kanagawa.model.Node;
+import github.hotstu.hof.BR;
+import github.hotstu.hof.kanagawa.KanaPresenter;
+import github.hotstu.hof.kanagawa.KanaPresenterFactory;
+import github.hotstu.hof.kanagawa.model.Node;
 import github.hotstu.naiue.widget.recycler.BindingViewHolder;
 import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
 
@@ -36,13 +36,13 @@ public class KanaTest1Activity extends AppCompatActivity {
                         ViewDataBinding binding1;
                         if (root.isRoot()) {
                             binding1 = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                    github.hotstu.lib.hof.R.layout.hof_list_item_tree_root, parent, false);
+                                    github.hotstu.hof.R.layout.hof_list_item_tree_root, parent, false);
                         } else if (root.isLeafParent()) {
                             binding1 = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                                     R.layout.custom_list_item_tree_leaf, parent, false);
                         } else {
                             binding1 = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                    github.hotstu.lib.hof.R.layout.hof_list_item_tree_middle, parent, false);
+                                    github.hotstu.hof.R.layout.hof_list_item_tree_middle, parent, false);
                         }
 
                         return new BindingViewHolder<>(binding1);

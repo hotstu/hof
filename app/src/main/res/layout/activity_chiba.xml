@@ -8,7 +8,7 @@
 
         <variable
             name="presenter"
-            type="github.hotstu.lib.hof.chiba.ChibaPresenterFactory" />
+            type="github.hotstu.hof.chiba.ChibaPresenterFactory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
