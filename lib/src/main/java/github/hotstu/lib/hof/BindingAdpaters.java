@@ -3,12 +3,13 @@ package github.hotstu.lib.hof;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import github.hotstu.lib.hof.chiba.Checkable;
 import github.hotstu.lib.hof.chiba.ChibaPresenterFactory;
 import github.hotstu.lib.hof.kanagawa.KanaPresenter;
@@ -39,7 +40,7 @@ public class BindingAdpaters {
     }
 
 
-    @BindingAdapter("items")
+    @BindingAdapter("bind:hof_kana_items")
     public static void setChild(RecyclerView rv, List<Checkable> items) {
         if (rv.getAdapter() == null) {
             MOTypedRecyclerAdapter adapter = new MOTypedRecyclerAdapter();

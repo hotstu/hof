@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -37,19 +38,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="5dp"
+                android:drawableEnd="@{item.expanded? @drawable/hof_common_icon_flight_arrow_up: @drawable/hof_common_icon_flight_arrow_down}"
                 android:onClick="@{()->item.toggle()}"
                 android:text="@{item.expanded? @string/hof_collapse : @string/hof_expand}"
                 android:textColor="@color/hof_blue"
                 android:textSize="16sp"
                 android:visibility="@{item.fullItems.size() &lt;=6? View.GONE: View.VISIBLE}"
-                android:drawableEnd="@{item.expanded? @drawable/hof_common_icon_flight_arrow_up: @drawable/hof_common_icon_flight_arrow_down}"
                 tools:text="展开" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:items="@{item.expanded?item.fullItems:item.collapseItems}">
+            bind:hof_kana_items="@{item.expanded?item.fullItems:item.collapseItems}">
 
         </androidx.recyclerview.widget.RecyclerView>
 
