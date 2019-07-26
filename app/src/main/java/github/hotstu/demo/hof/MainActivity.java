@@ -1,11 +1,15 @@
 package github.hotstu.demo.hof;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import github.hotstu.demo.hof.chiba.ChibaActivity;
+import github.hotstu.demo.hof.kana.KanaTest1Activity;
+import github.hotstu.demo.hof.kana.KanaTest2Activity;
+import github.hotstu.demo.hof.yoko.YokoTestActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,20 +21,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         int id = v.getId();
-        switch (id) {
-            case R.id.chiba:
-                ARouter.getInstance().build("/app/chiba").navigation();
-                break;
-            case R.id.kana:
-                ARouter.getInstance().build("/app/kana").navigation();
-                break;
-            case R.id.kana2:
-                ARouter.getInstance().build("/app/kana2").navigation();
-                break;
-            case R.id.yoko:
-                 ARouter.getInstance().build("/app/yoko").navigation();
-                break;
-
+        if (id == R.id.chiba) {
+            Intent i = new Intent(this, ChibaActivity.class);
+            startActivity(i);
+        } else if (id == R.id.kana) {
+            Intent i = new Intent(this, KanaTest1Activity.class);
+            startActivity(i);
+        } else if (id == R.id.kana2) {
+            Intent i = new Intent(this, KanaTest2Activity.class);
+            startActivity(i);
+        } else if (id == R.id.yoko) {
+            Intent i = new Intent(this, YokoTestActivity.class);
+            startActivity(i);
         }
     }
 }

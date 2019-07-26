@@ -2,7 +2,6 @@ package github.hotstu.demo.hof.chiba;
 
 import android.os.Bundle;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -13,7 +12,6 @@ import github.hotstu.demo.hof.R;
 import github.hotstu.lib.hof.chiba.ChibaPresenterFactory;
 import github.hotstu.lib.hof.chiba.ChibaPresenter;
 
-@Route(path = "/app/chiba", name = "主从列表控件测试")
 public class ChibaActivity extends AppCompatActivity {
 
     @Override

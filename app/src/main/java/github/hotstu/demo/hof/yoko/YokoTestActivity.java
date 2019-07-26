@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.BindingAdapter;
@@ -15,7 +14,6 @@ import github.hotstu.demo.hof.BR;
 import github.hotstu.demo.hof.R;
 import github.hotstu.lib.hof.yokohama.YokoView;
 
-@Route(path = "/app/yoko", name = "抽屉菜单")
 public class YokoTestActivity extends AppCompatActivity {
 
     private YokoView yokoView;

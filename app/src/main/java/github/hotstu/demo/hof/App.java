@@ -2,8 +2,6 @@ package github.hotstu.demo.hof;
 
 import android.app.Application;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-
 /**
  * @author hglf <a href="https://github.com/hotstu">hglf</a>
  * @desc
@@ -15,6 +13,5 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sApp = this;
-        ARouter.init(this);
     }
 }

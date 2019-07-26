@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -20,7 +18,6 @@ import github.hotstu.lib.hof.kanagawa.model.Node;
 import github.hotstu.naiue.widget.recycler.BindingViewHolder;
 import github.hotstu.naiue.widget.recycler.MOTypedRecyclerAdapter;
 
-@Route(path = "/app/kana", name = "组织树控件测试")
 public class KanaTest1Activity extends AppCompatActivity {
 
     @Override
